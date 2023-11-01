@@ -10,9 +10,10 @@ class CPUSchedulingSimulation extends Component {
       completedProcesses: [],
     };
     this.processNameInput = React.createRef();
+    this.processArrivalTimeInput = React.createRef(); // Thêm trường arrivalTime
     this.processPriorityInput = React.createRef();
     this.processTimeInput = React.createRef();
-    this.processArrivalTimeInput = React.createRef(); // Thêm trường arrivalTime
+    
   }
 
   handleRunSimulation = () => {
@@ -98,9 +99,10 @@ class CPUSchedulingSimulation extends Component {
         <h1>CPU Scheduling Simulation (Priority Scheduling)</h1>
         <div className="add-process-form">
           <input type="text" placeholder="Process name" ref={this.processNameInput} />
+          <input type="number" placeholder="Arrival Time" ref={this.processArrivalTimeInput} /> {/* Thêm trường arrivalTime */}
           <input type="number" placeholder="Priority" ref={this.processPriorityInput} />
           <input type="number" placeholder="Time" ref={this.processTimeInput} />
-          <input type="number" placeholder="Arrival Time" ref={this.processArrivalTimeInput} /> {/* Thêm trường arrivalTime */}
+          
           <button onClick={this.handleAddProcess}>Add</button>
         </div>
         <div className="process-list">
@@ -109,9 +111,10 @@ class CPUSchedulingSimulation extends Component {
             <thead>
               <tr>
                 <th>Process name</th>
+                <th>Arrival Time</th> {/* Thêm cột Arrival Time */}
                 <th>Priority</th>
                 <th>Time</th>
-                <th>Arrival Time</th> {/* Thêm cột Arrival Time */}
+        
                 <th>Action</th>
               </tr>
             </thead>
@@ -119,9 +122,10 @@ class CPUSchedulingSimulation extends Component {
               {processes.map(process => (
                 <tr key={process.id}>
                   <td>{process.name}</td>
+                  <td>{process.arrivalTime}</td> {/* Hiển thị giá trị Arrival Time */}
                   <td>{process.priority}</td>
                   <td>{process.time}</td>
-                  <td>{process.arrivalTime}</td> {/* Hiển thị giá trị Arrival Time */}
+                  
                   <td>
                     <button onClick={() => this.handleDeleteProcess(process.id)}>Delete</button>
                   </td>
